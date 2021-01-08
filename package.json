@@ -1,52 +1,89 @@
 {
-  "name": "nw-vue-demo",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
-  },
-  "dependencies": {
-    "core-js": "^3.6.5",
-    "vue": "^2.6.11",
-    "vue-router": "^3.2.0",
-    "vuex": "^3.4.0"
-  },
-  "devDependencies": {
-    "@vue/cli-plugin-babel": "~4.5.0",
-    "@vue/cli-plugin-eslint": "~4.5.0",
-    "@vue/cli-plugin-router": "~4.5.0",
-    "@vue/cli-plugin-vuex": "~4.5.0",
-    "@vue/cli-service": "~4.5.0",
-    "@vue/eslint-config-prettier": "^6.0.0",
-    "babel-eslint": "^10.1.0",
-    "eslint": "^6.7.2",
-    "eslint-plugin-prettier": "^3.1.3",
-    "eslint-plugin-vue": "^6.2.2",
-    "node-sass": "^4.12.0",
-    "prettier": "^1.19.1",
-    "sass-loader": "^8.0.2",
-    "vue-template-compiler": "^2.6.11"
-  },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
+    "name": "nw-vue-demo",
+    "version": "0.1.0",
+    "private": true,
+    "main": "http://localhost:8687/",
+    "scripts": {
+        "serve": "vue-cli-service serve",
+        "serve:nw": "nw",
+        "build": "vue-cli-service build",
+        "build:nw:all": "npm run build && build --tasks win-x86,win-x64,linux-x86,linux-x64,mac-x64 --mirror https://dl.nwjs.io/ .",
+        "build:nw": "npm run build && build --tasks win-x86 --mirror https://npm.taobao.org/mirrors/nwjs/ .",
+        "lint": "vue-cli-service lint"
     },
-    "extends": [
-      "plugin:vue/essential",
-      "eslint:recommended",
-      "@vue/prettier"
-    ],
-    "parserOptions": {
-      "parser": "babel-eslint"
+    "window": {
+        "width": 1600,
+        "height": 800,
+        "min_width": 1366,
+        "min_height": 768
     },
-    "rules": {}
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not dead"
-  ]
+    "build": {
+        "files": [
+            "dist/**/*"
+        ],
+        "output": "./releases",
+        "nwVersion": "0.14.7",
+        "nwPlatforms": [
+            "win"
+        ],
+        "nwArchs": [
+            "x86"
+        ],
+        "overriddenProperties": {
+            "main": "./dist/index.html"
+        },
+        "win": {
+            "productName": "vue-nw",
+            "companyName": "wlui",
+            "copyright": "copyright",
+            "icon": "./src/assets/logo.ico"
+        },
+        "window": {
+            "icon": "./src/assets/logo.ico"
+        }
+    },
+    "dependencies": {
+        "core-js": "^3.6.5",
+        "vue": "^2.6.11",
+        "vue-router": "^3.2.0",
+        "vuex": "^3.4.0"
+    },
+    "devDependencies": {
+        "@vue/cli-plugin-babel": "~4.5.0",
+        "@vue/cli-plugin-eslint": "~4.5.0",
+        "@vue/cli-plugin-router": "~4.5.0",
+        "@vue/cli-plugin-vuex": "~4.5.0",
+        "@vue/cli-service": "~4.5.0",
+        "@vue/eslint-config-prettier": "^6.0.0",
+        "babel-eslint": "^10.1.0",
+        "eslint": "^6.7.2",
+        "eslint-plugin-prettier": "^3.1.3",
+        "eslint-plugin-vue": "^6.2.2",
+        "node-sass": "^4.12.0",
+        "nw": "^0.14.7-sdk",
+        "nwjs-builder-phoenix": "^1.15.0",
+        "prettier": "^1.19.1",
+        "sass-loader": "^8.0.2",
+        "vue-template-compiler": "^2.6.11"
+    },
+    "eslintConfig": {
+        "root": true,
+        "env": {
+            "node": true
+        },
+        "extends": [
+            "plugin:vue/essential",
+            "eslint:recommended",
+            "@vue/prettier"
+        ],
+        "parserOptions": {
+            "parser": "babel-eslint"
+        },
+        "rules": {}
+    },
+    "browserslist": [
+        "> 1%",
+        "last 2 versions",
+        "not dead"
+    ]
 }
