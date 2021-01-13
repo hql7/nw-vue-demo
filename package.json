@@ -9,8 +9,10 @@
         "build": "vue-cli-service build",
         "build:nw:all": "npm run build && build --tasks win-x86,win-x64,linux-x86,linux-x64,mac-x64 --mirror https://dl.nwjs.io/ .",
         "build:nw": "npm run build && build --tasks win-x86 --mirror https://npm.taobao.org/mirrors/nwjs/ .",
+        "server": "cd server && yarn serve",
         "lint": "vue-cli-service lint"
     },
+    "manifestUrl": "http://127.0.0.1:3000/package.json",
     "window": {
         "width": 1600,
         "height": 800,
@@ -40,13 +42,23 @@
         },
         "window": {
             "icon": "./src/assets/logo.ico"
-        }
+        },
+        "targets": [
+            "zip"
+        ]
+    },
+    "nodejs": true,
+    "js-flags": "--harmony",
+    "node-remote": "<all_urls>",
+    "webkit": {
+        "plugin": true
     },
     "dependencies": {
         "core-js": "^3.6.5",
         "vue": "^2.6.11",
         "vue-router": "^3.2.0",
-        "vuex": "^3.4.0"
+        "vuex": "^3.4.0",
+        "nw-autoupdater": "file:./nw-autoupdater-1.1.11.tgz"
     },
     "devDependencies": {
         "@vue/cli-plugin-babel": "~4.5.0",
@@ -69,6 +81,7 @@
     "eslintConfig": {
         "root": true,
         "env": {
+            "browser": true,
             "node": true
         },
         "extends": [
