@@ -1,102 +1,117 @@
 {
-    "name": "nw-vue-demo",
-    "version": "0.1.0",
-    "private": true,
-    "main": "http://localhost:8687/",
-    "scripts": {
-        "serve": "vue-cli-service serve",
-        "serve:nw": "nw",
-        "build": "vue-cli-service build",
-        "build:nw:all": "npm run build && build --tasks win-x86,win-x64,linux-x86,linux-x64,mac-x64 --mirror https://dl.nwjs.io/ .",
-        "build:nw": "npm run build && build --tasks win-x86 --mirror https://npm.taobao.org/mirrors/nwjs/ .",
-        "server": "cd server && yarn serve",
-        "lint": "vue-cli-service lint"
+  "name": "nw-vue-demo",
+  "version": "0.1.0",
+  "private": true,
+  "main": "http://localhost:8687",
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "serve:nw": "nw",
+    "build": "vue-cli-service build",
+    "build:nw:all": "npm run build && build --tasks win-x86,win-x64,linux-x86,linux-x64,mac-x64 --mirror https://dl.nwjs.io/ .",
+    "build:nw": "npm run build && build --tasks win-x86 --mirror https://npm.taobao.org/mirrors/nwjs/ .",
+    "server": "cd server && yarn serve",
+    "setup": "node build/setup.js",
+    "lint": "vue-cli-service lint"
+  },
+  "manifestUrl": "http://localhost:3003/package.json",
+  "packages": {
+    "win": {
+      "url": "http://localhost:3003/releases/nw-vue-demo-0.1.0-win-x86.zip"
+    }
+  },
+  "window": {
+    "width": 1600,
+    "height": 800,
+    "min_width": 1366,
+    "min_height": 768
+  },
+  "build": {
+    "files": [
+      "dist/**/*"
+    ],
+    "output": "./releases",
+    "nwVersion": "0.14.7",
+    "nwPlatforms": [
+      "win"
+    ],
+    "nwArchs": [
+      "x86"
+    ],
+    "overriddenProperties": {
+      "main": "./dist/index.html"
     },
-    "manifestUrl": "http://127.0.0.1:3000/package.json",
+    "win": {
+      "productName": "nw-vue-demo",
+      "companyName": "wlui",
+      "copyright": "copyright",
+      "icon": "./src/assets/logo.ico"
+    },
     "window": {
-        "width": 1600,
-        "height": 800,
-        "min_width": 1366,
-        "min_height": 768
+      "icon": "./src/assets/logo.ico"
     },
-    "build": {
-        "files": [
-            "dist/**/*"
-        ],
-        "output": "./releases",
-        "nwVersion": "0.14.7",
-        "nwPlatforms": [
-            "win"
-        ],
-        "nwArchs": [
-            "x86"
-        ],
-        "overriddenProperties": {
-            "main": "./dist/index.html"
-        },
-        "win": {
-            "productName": "vue-nw",
-            "companyName": "wlui",
-            "copyright": "copyright",
-            "icon": "./src/assets/logo.ico"
-        },
-        "window": {
-            "icon": "./src/assets/logo.ico"
-        },
-        "targets": [
-            "zip"
-        ]
-    },
-    "nodejs": true,
-    "js-flags": "--harmony",
-    "node-remote": "<all_urls>",
-    "webkit": {
-        "plugin": true
-    },
-    "dependencies": {
-        "core-js": "^3.6.5",
-        "vue": "^2.6.11",
-        "vue-router": "^3.2.0",
-        "vuex": "^3.4.0",
-        "nw-autoupdater": "file:./nw-autoupdater-1.1.11.tgz"
-    },
-    "devDependencies": {
-        "@vue/cli-plugin-babel": "~4.5.0",
-        "@vue/cli-plugin-eslint": "~4.5.0",
-        "@vue/cli-plugin-router": "~4.5.0",
-        "@vue/cli-plugin-vuex": "~4.5.0",
-        "@vue/cli-service": "~4.5.0",
-        "@vue/eslint-config-prettier": "^6.0.0",
-        "babel-eslint": "^10.1.0",
-        "eslint": "^6.7.2",
-        "eslint-plugin-prettier": "^3.1.3",
-        "eslint-plugin-vue": "^6.2.2",
-        "node-sass": "^4.12.0",
-        "nw": "^0.14.7-sdk",
-        "nwjs-builder-phoenix": "^1.15.0",
-        "prettier": "^1.19.1",
-        "sass-loader": "^8.0.2",
-        "vue-template-compiler": "^2.6.11"
-    },
-    "eslintConfig": {
-        "root": true,
-        "env": {
-            "browser": true,
-            "node": true
-        },
-        "extends": [
-            "plugin:vue/essential",
-            "eslint:recommended",
-            "@vue/prettier"
-        ],
-        "parserOptions": {
-            "parser": "babel-eslint"
-        },
-        "rules": {}
-    },
-    "browserslist": [
-        "> 1%",
-        "last 2 versions",
-        "not dead"
+    "targets": [
+      "zip"
     ]
+  },
+  "nodejs": true,
+  "js-flags": "--harmony",
+  "node-remote": "<all_urls>",
+  "webkit": {
+    "plugin": true
+  },
+  "dependencies": {
+    "core-js": "^3.6.5",
+    "nw-autoupdater": "file:./nw-autoupdater-1.1.11.tgz",
+    "vue": "^2.6.11",
+    "vue-router": "^3.2.0",
+    "vuex": "^3.4.0"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-eslint": "~4.5.0",
+    "@vue/cli-plugin-router": "~4.5.0",
+    "@vue/cli-plugin-vuex": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "@vue/eslint-config-prettier": "^6.0.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^6.7.2",
+    "eslint-friendly-formatter": "^4.0.1",
+    "eslint-plugin-prettier": "^3.1.3",
+    "eslint-plugin-vue": "^6.2.2",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "iconv-lite": "^0.6.2",
+    "innosetup-compiler": "^5.6.1",
+    "node-sass": "^4.12.0",
+    "nw": "^0.14.7-sdk",
+    "nwjs-builder-phoenix": "^1.15.0",
+    "prettier": "^1.19.1",
+    "sass-loader": "^8.0.2",
+    "uglifyjs-webpack-plugin": "^2.2.0",
+    "vue-template-compiler": "^2.6.11"
+  },
+  "engines": {
+    "node": ">= 4.0.0",
+    "npm": ">= 3.0.0"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "browser": true,
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended",
+      "@vue/prettier"
+    ],
+    "parserOptions": {
+      "parser": "babel-eslint"
+    },
+    "rules": {}
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
 }
